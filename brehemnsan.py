@@ -1,10 +1,13 @@
 import pandas as pd
 import numpy as np
 import csv
+import matplotlib.pyplot as plt 
+import matplotlib.patches as patches
 
 # Load the CSV file containing obstacle coordinates
 # Specify the path to your CSV file
-file_path = '/home/parth/IPC/INTERACTION-Dataset-TC-v1_0/recorded_trackfiles/TC_BGR_Intersection_VA/vehicle_tracks_001.csv'
+file_path = r'C:\Users\ADMIN\Documents\Computational_Planning\INTERACTION-Dataset-TC-v1_0\recorded_trackfiles\TC_BGR_Intersection_VA\vehicle_tracks_000.csv'
+
 
 # Choose the appropriate encoding
 encoding = 'utf-8'  # Common encodings include 'utf-8', 'latin-1', 'ISO-8859-1', 'cp1252'
@@ -23,6 +26,7 @@ with open(file_path, mode='r', encoding=encoding, newline='') as file:
 
 # Initialize the starting position and direction of walk
 current_position = np.array([0, 0, 0])
+goal_position = np.array([12,17,20])
 direction = np.array([1, 1, 1])
 step_size = 1
 closest_distance = float('inf')
@@ -42,6 +46,11 @@ def calculate_distance(point1, point2):
 # Filter obstacles that are in the direction of travel using vector projection
 directional_obstacles = []
 for obs in obstacles:
+    obs = np.array(obs)
+    obs = np.pad(obs, (0, 1), mode='constant')
+    # print("Shape of obs:", obs.shape)
+    # print("Shape of current_position:", current_position.shape)
+    # print("Shape of direction:", direction.shape)
     relative_position = obs - current_position
     projection = vector_projection(relative_position, direction)
     # Check if the projection is in the same direction and is positive
@@ -49,7 +58,7 @@ for obs in obstacles:
         directional_obstacles.append((obs, np.linalg.norm(projection)))
 
 # Continue moving in the direction and check for the closest obstacle
-while np.all(current_position < 100):  # Define an appropriate stopping condition
+while np.all(current_position < goal_position):  # Define an appropriate stopping condition
     current_position += direction * step_size
     for obs, proj_length in directional_obstacles:
         if proj_length > np.linalg.norm(current_position):
@@ -63,5 +72,15 @@ while np.all(current_position < 100):  # Define an appropriate stopping conditio
 # If closest obstacle is found, fitting a circle at the current position with the closest distance as the radius
 if closest_obstacle is not None:
     print(f"Fit a circle at {current_position} with radius {closest_distance}")
+    fig, ax = plt.subplots()
+    ax.plot(current_position[0], current_position[1], 'ro')  # Plotting the center of the circle
+    circle = patches.Circle((current_position[0], current_position[1]), closest_distance, edgecolor='b', fill=False)
+    ax.add_patch(circle)
+    ax.set_aspect('equal', 'box')
+    ax.set_xlabel('X')
+    ax.set_ylabel('Y')
+    ax.set_title('Circle with Closest Obstacle')
+    ax.grid(True)
+    plt.show()
 else:
     print("No close obstacles found within the travel path.")
