@@ -11,3 +11,6 @@ Once, the obstacles that lie in our direction is taken care we move forward to f
 ![Circle with closest distance as radius](brehemnsan.png)
 
 ![Obstacles Exploration](obstacles.png)
+
+## The K-D_Tree Implementation
+[Doc](https://medium.com/smucs/a-look-into-k-dimensional-trees-290ec69dffe9#:~:text=What%20is%20a%20K%2DDimensional,in%20the%20multi%20dimensional%20space.)
