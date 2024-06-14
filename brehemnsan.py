@@ -13,7 +13,7 @@ file_path = r'C:\Users\ADMIN\Documents\Computational_Planning\INTERACTION-Datase
 encoding = 'utf-8'  # Common encodings include 'utf-8', 'latin-1', 'ISO-8859-1', 'cp1252'
 
 # Open the file with the specified encoding
-obstacles=[];
+obstacles=[]
 with open(file_path, mode='r', encoding=encoding, newline='') as file:
     csv_reader = csv.reader(file)
 
