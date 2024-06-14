@@ -27,10 +27,11 @@ k_d_tree = KDTree(obstacles)
 current_position = np.array([0,0])
 start_time = time.time()
 # do a local search for obstacles with current position as query and return the distace and index 
-distance, index = k_d_tree.query(current_position)
-closest_obstacle = obstacles[index]
-closest_distance = distance 
+radius = 1500
+indices = k_d_tree.query_ball_point(current_position, radius)
+closest_obstacle = obstacles[indices]
+#closest_distance = distance 
 end_time = time.time()
-print(f"Closest obstacle: {closest_obstacle} at distance {distance}")
+print(f"Obstacles within radius {radius}: {closest_obstacle}")
 print(f"Computation time: {end_time - start_time} seconds")
 
