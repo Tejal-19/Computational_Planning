@@ -7,10 +7,13 @@ The approach focuses on finding or clustering the obstacles in our direction. We
 Once, the obstacles that lie in our direction is taken care we move forward to find the obstacle that is closest to us. 
 [Doc](https://docs.google.com/document/d/1HwhR370o9kS2Lb4gRbg8JsDy_vtT5b6vlm_0Y4IKhEk/edit)
 
+## The K-D_Tree Implementation
+[Doc](https://medium.com/smucs/a-look-into-k-dimensional-trees-290ec69dffe9#:~:text=What%20is%20a%20K%2DDimensional,in%20the%20multi%20dimensional%20space.)
+
 ## Results 
-![Circle with closest distance as radius](brehemnsan.png)
+![Circle with closest distance as radius using brehemnsan algorithm](brehemnsan.png)
 
 ![Obstacles Exploration](obstacles.png)
 
-## The K-D_Tree Implementation
-[Doc](https://medium.com/smucs/a-look-into-k-dimensional-trees-290ec69dffe9#:~:text=What%20is%20a%20K%2DDimensional,in%20the%20multi%20dimensional%20space.)
+![Circle with closest distance as radius using K-D tree implementation ](closest_obstacle.png)
+
