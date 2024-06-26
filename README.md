@@ -21,4 +21,5 @@ Once, the obstacles that lie in our direction is taken care we move forward to f
 [Doc](https://docs.google.com/document/d/1h5gE9apKF-Ykxpte6mRMIKQhAqh1xXK2J0Vk6-Jg9VI/edit?usp=sharing)
 
 ## Results
+![Plot](tentative_result.png)
 
