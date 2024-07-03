@@ -3,7 +3,7 @@ import csv
 import matplotlib.pyplot as plt
 
 # Read the CSV file
-file_path = r'/home/parth/INTERACTION-Dataset-TC-v1_0/recorded_trackfiles/TC_BGR_Intersection_VA/vehicle_tracks_000.csv'
+file_path = r'/home/ecl-109/INTERACTION-Dataset-TC-v1_0/recorded_trackfiles/TC_BGR_Intersection_VA/vehicle_tracks_000.csv'
 
 # Choose the appropriate encoding
 encoding = 'utf-8'  # Common encodings include 'utf-8', 'latin-1', 'ISO-8859-1', 'cp1252'
@@ -73,7 +73,10 @@ for timestamp in unique_timestamps:
     # Calculate direction for current timestamp
     direction = goal_position - current_position
     step_size = 1.0
-    direction = direction / np.linalg.norm(direction) * step_size  # Normalize direction to step size
+    direction_norm = np.linalg.norm(direction)
+    if direction_norm != 0:
+        direction = direction / direction_norm * step_size 
+    direction = direction / direction_norm * step_size  # Normalize direction to step size
     
     # Filter directional obstacles
     directional_obstacles = filter_directional_obstacles(current_position, direction, current_obstacles)
@@ -100,6 +103,8 @@ for timestamp in unique_timestamps:
     plt.ylabel('Y-Coordinate')
     plt.title(f'Obstacles and Directional Obstacles at Timestamp {timestamp}')
     plt.legend()
+    plt.xlim(970,1015)
+    plt.ylim(970,1015)
     plt.grid(True)
     plt.pause(0.1)
 

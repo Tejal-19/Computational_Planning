@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 import csv
-from scipy.spatial import KDTree
+from sklearn.neighbors import BallTree
 import time
 import matplotlib.pyplot as plt
 
@@ -31,7 +31,6 @@ sorted_indices = np.argsort(timestamps)
 timestamps = timestamps[sorted_indices]
 obstacles = obstacles[sorted_indices]
 
-
 # Specify the current position
 current_position = np.array([995, 985])
 
@@ -47,14 +46,14 @@ for timestamp in unique_timestamps:
     # Filter obstacles for the current timestamp
     current_obstacles = obstacles[timestamps == timestamp]
 
-    # Create a K-D tree for current obstacles
+    # Create a Ball Tree for current obstacles
     if len(current_obstacles) > 0:
-        k_d_tree = KDTree(current_obstacles)
+        ball_tree = BallTree(current_obstacles)
         
         # Perform a local search for obstacles with current position as query
         radius = 5
-        indices = k_d_tree.query_ball_point(current_position, radius)
-        closest_obstacle = current_obstacles[indices]
+        indices = ball_tree.query_radius([current_position], r=radius)
+        closest_obstacle = current_obstacles[indices[0]]
 
         end_time = time.time()
         print(f"Obstacles within radius {radius} at timestamp {timestamp}: {closest_obstacle}")
@@ -78,4 +77,3 @@ for timestamp in unique_timestamps:
 
 # Keep the final plot displayed
 plt.show()
-

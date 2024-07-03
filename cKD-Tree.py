@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 import csv
-from scipy.spatial import KDTree
+from scipy.spatial import cKDTree
 import time
 import matplotlib.pyplot as plt
 
@@ -31,7 +31,6 @@ sorted_indices = np.argsort(timestamps)
 timestamps = timestamps[sorted_indices]
 obstacles = obstacles[sorted_indices]
 
-
 # Specify the current position
 current_position = np.array([995, 985])
 
@@ -47,13 +46,13 @@ for timestamp in unique_timestamps:
     # Filter obstacles for the current timestamp
     current_obstacles = obstacles[timestamps == timestamp]
 
-    # Create a K-D tree for current obstacles
+    # Create a cKDTree for current obstacles
     if len(current_obstacles) > 0:
-        k_d_tree = KDTree(current_obstacles)
+        ckdtree = cKDTree(current_obstacles)
         
         # Perform a local search for obstacles with current position as query
         radius = 5
-        indices = k_d_tree.query_ball_point(current_position, radius)
+        indices = ckdtree.query_ball_point(current_position, radius)
         closest_obstacle = current_obstacles[indices]
 
         end_time = time.time()
@@ -79,3 +78,4 @@ for timestamp in unique_timestamps:
 # Keep the final plot displayed
 plt.show()
 
+                       
