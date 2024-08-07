@@ -1,6 +1,9 @@
 import numpy as np
+import pandas as pd
 import csv
 import matplotlib.pyplot as plt
+from scipy.spatial import KDTree
+import time
 
 # Read the CSV file
 file_path = r'/home/parth/INTERACTION-Dataset-TC-v1_0/recorded_trackfiles/TC_BGR_Intersection_VA/vehicle_tracks_000.csv'
@@ -11,6 +14,7 @@ encoding = 'utf-8'  # Common encodings include 'utf-8', 'latin-1', 'ISO-8859-1',
 # Open the file with the specified encoding
 obstacles = []
 timestamps = []
+closest_obstacles = []
 with open(file_path, mode='r', encoding=encoding, newline='') as file:
     csv_reader = csv.reader(file)
     # Skip the header if there is one
@@ -30,9 +34,13 @@ timestamps = timestamps[sorted_indices]
 obstacles = obstacles[sorted_indices]
 
 # Set the current and goal positions, direction, and step size
-current_position = np.array([970.0, 970.0])
-goal_position = np.array([998.0, 995.0])
+current_position = np.array([990.0, 995.0])
+goal_position = np.array([998.0, 1000.0])
 
+#Function to calculate the distance between two positions 
+def dist(obstacle, current_position):
+    distance = np.sqrt((obstacles[:, 0] - current_position[0])**2 + (obstacles[:, 1] - current_position[1])**2)
+    return distance
 # Function to find the vector projection
 def vector_projection(vector, base):
     base_norm = np.linalg.norm(base)
@@ -48,8 +56,6 @@ def filter_directional_obstacles(current_position, direction, obstacles, thresho
         relative_position = obs - current_position
         projection = vector_projection(relative_position, direction)
         distance_from_projection = np.linalg.norm(relative_position - projection)
-        # Debug print to check projection values
-        print(f"Obstacle: {obs}, Projection: {projection}, Distance from projection: {distance_from_projection}")
         if distance_from_projection <= threshold:
             directional_obstacles.append(obs)
     
@@ -86,13 +92,21 @@ for timestamp in unique_timestamps:
     
     # Plotting
     if len(directional_obstacles) > 0:
-        plt.scatter(*zip(*current_obstacles), c='gray', label='All Obstacles')
+        k_d_tree = KDTree(current_obstacles)
+        closest_obstacle = directional_obstacles[0]
+        radius = np.linalg.norm(closest_obstacle - current_position)
+        indices = k_d_tree.query_ball_point(current_position, radius)
+        closest_obstacles = current_obstacles[indices]
+        distances = dist(closest_obstacles, current_position)
+        # Print the distances along with corresponding obstacles
+        for obstacle, distance in zip(closest_obstacles, distances):
+            print(f"Obstacle: {obstacle}, Distance: {distance}")
         plt.scatter(directional_obstacles[:, 0], directional_obstacles[:, 1], c='green', label='Directional Obstacles')
         plt.scatter(current_position[0], current_position[1], c='red', label='Current Position')
         plt.scatter(goal_position[0], goal_position[1], c='blue', label='Goal Position')
         
         # Highlight the closest obstacle
-        closest_obstacle = directional_obstacles[0]
+        
         plt.scatter(closest_obstacle[0], closest_obstacle[1], c='yellow', label='Closest Obstacle', s=100, edgecolors='black')
     else:
         plt.scatter(*zip(*current_obstacles), c='gray', label='All Obstacles')
@@ -110,4 +124,3 @@ for timestamp in unique_timestamps:
 
 # Keep the final plot displayed
 plt.show()
-

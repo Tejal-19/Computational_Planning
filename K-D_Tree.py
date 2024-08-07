@@ -6,7 +6,7 @@ import time
 import matplotlib.pyplot as plt
 
 # File path
-file_path = r'/home/ecl-109/INTERACTION-Dataset-TC-v1_0/recorded_trackfiles/TC_BGR_Intersection_VA/vehicle_tracks_000.csv'
+file_path = r'/home/parth/INTERACTION-Dataset-TC-v1_0/recorded_trackfiles/TC_BGR_Intersection_VA/vehicle_tracks_000.csv'
 
 # Specify the encoding
 encoding = 'utf-8'
@@ -52,7 +52,7 @@ for timestamp in unique_timestamps:
         k_d_tree = KDTree(current_obstacles)
         
         # Perform a local search for obstacles with current position as query
-        radius = 5
+        radius = 10
         indices = k_d_tree.query_ball_point(current_position, radius)
         closest_obstacle = current_obstacles[indices]
 
