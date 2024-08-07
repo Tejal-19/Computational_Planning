@@ -12,6 +12,7 @@ Once, the obstacles that lie in our direction is taken care we move forward to f
 
 ## Results 
 ![Brehemnsan algorithm implementation with K-D Tree](https://github.com/Tejal-19/Computational_Planning/blob/main/brehem_KD.gif)
+![Results showing the Obstacles within the 360 degree range and their distances from the robot](results_brehemen.jpg)
 
 ## Grid Partitioning
 [Doc](https://docs.google.com/document/d/1h5gE9apKF-Ykxpte6mRMIKQhAqh1xXK2J0Vk6-Jg9VI/edit?usp=sharing)
