@@ -97,8 +97,7 @@ for timestamp in unique_timestamps:
         radius = np.linalg.norm(closest_obstacle - current_position)
         indices = k_d_tree.query_ball_point(current_position, radius)
         closest_obstacles = current_obstacles[indices]
-        for x in closest_obstacles :
-            distances = dist(closest_obstacles, current_position)
+        distances = dist(closest_obstacles, current_position)
         # Print the distances along with corresponding obstacles
         for obstacle, distance in zip(closest_obstacles, distances):
             print(f"Obstacle: {obstacle}, Distance: {distance}")
