@@ -3,7 +3,7 @@ import csv
 import matplotlib.pyplot as plt
 
 # Read the CSV file
-file_path = r'/home/ecl-109/INTERACTION-Dataset-TC-v1_0/recorded_trackfiles/TC_BGR_Intersection_VA/vehicle_tracks_000.csv'
+file_path = r'/home/parth/INTERACTION-Dataset-TC-v1_0/recorded_trackfiles/TC_BGR_Intersection_VA/vehicle_tracks_000.csv'
 
 # Choose the appropriate encoding
 encoding = 'utf-8'  # Common encodings include 'utf-8', 'latin-1', 'ISO-8859-1', 'cp1252'
