@@ -11,11 +11,7 @@ Once, the obstacles that lie in our direction is taken care we move forward to f
 [Doc](https://medium.com/smucs/a-look-into-k-dimensional-trees-290ec69dffe9#:~:text=What%20is%20a%20K%2DDimensional,in%20the%20multi%20dimensional%20space.)
 
 ## Results 
-![Circle with closest distance as radius using brehemnsan algorithm](brehemnsan.png)
-
-![Obstacles Exploration](obstacles.png)
-
-![Circle with closest distance as radius using K-D tree implementation ](closest_obstacle.png)
+![Brehemnsan algorithm implementation with K-D Tree](https://github.com/Tejal-19/Computational_Planning/blob/main/brehem_KD.gif)
 
 ## Grid Partitioning
 [Doc](https://docs.google.com/document/d/1h5gE9apKF-Ykxpte6mRMIKQhAqh1xXK2J0Vk6-Jg9VI/edit?usp=sharing)
