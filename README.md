@@ -15,7 +15,7 @@ Once, the obstacles that lie in our direction is taken care we move forward to f
 ![Results showing the Obstacles within the 360 degree range and their distances from the robot](results_brehemen.png)
 
 ## Grid Partitioning
-[Doc]([https://docs.google.com/document/d/1h5gE9apKF-Ykxpte6mRMIKQhAqh1xXK2J0Vk6-Jg9VI/edit?usp=sharing](https://drive.google.com/file/d/1nJpUEtxvjc6ju9PCPrMT7-FcgVk0JdyR/view?usp=drive_link))
+[Doc](https://docs.google.com/document/d/1h5gE9apKF-Ykxpte6mRMIKQhAqh1xXK2J0Vk6-Jg9VI/edit?usp=sharing](https://drive.google.com/file/d/1nJpUEtxvjc6ju9PCPrMT7-FcgVk0JdyR/view?usp=drive_link))
 
 ## Results
 ![Plot](tenetative_result.jpg)
