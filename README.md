@@ -1,5 +1,5 @@
 # Geometric_Motion_Planning
-Motion Planning based on Computational Geometry 
+Motion Planning based on 3D Geometry 
 
 ## Brehemnsan Algorithm 
 The approach focuses on finding or clustering the obstacles in our direction. We do this by the vector projection concept. This works as a directional filter which projects the obstacles on our direction of approach by computing how much of each obstacle's relative position to the current position is in the direction of movement. It is crucial that the projection must not only be positive but also in the actual direction of the vector to ensure the obstacle is ahead and not behind.
