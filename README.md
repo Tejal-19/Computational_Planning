@@ -1,4 +1,4 @@
-# Computational_Planning
+# Geometric_Motion_Planning
 Motion Planning based on Computational Geometry 
 
 ## Brehemnsan Algorithm 
